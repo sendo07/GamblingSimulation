@@ -11,6 +11,7 @@ public class GamblingSim {
   private static int dayBetCount = 0;
   private static int profitAmt = 0;
   private static int lossAmt = 0;
+  private static double stakePercent = 0.50;
 
   public static void main(String[] args) {
     monthGamble();
@@ -29,8 +30,8 @@ public class GamblingSim {
 
 
   public static int singleDayGamble() {
-    int winningStake = (int) (stake + (.5*stake));
-    int losingStake = (int) (stake - (.5*stake));
+    int winningStake = (int) (stake + (stakePercent*stake));
+    int losingStake = (int) (stake - (stakePercent*stake));
     loop1: while (true) {
       gamble();
       dayBetCount++;
