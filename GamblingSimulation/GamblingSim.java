@@ -5,13 +5,12 @@ import java.util.Random;
 public class GamblingSim {
 
   //Declaring initial Variables
-  private static final int moneyAtStart=100;
-  private static final int betAmt=1;
-  private static int gamblingMoney = moneyAtStart;
-  private static int dayBetCount=0;
-  private static int profitAmt=0;
-  private static int lossAmt=0;
-
+  private static final int stake = 100;
+  private static final int betAmt = 1;
+  private static int gamblingMoney = stake;
+  private static int dayBetCount = 0;
+  private static int profitAmt = 0;
+  private static int lossAmt = 0;
 
   public static void main(String[] args) {
     monthGamble();
@@ -19,12 +18,10 @@ public class GamblingSim {
 
   public static void monthGamble() {
     int i=1;
-    loop2: while (i<=30) {
+    while (i<=30) {
       singleDayGamble();
-      if (i==20) {
-        System.out.println("Total Profit in 20 days: "+profitAmt);
-        System.out.println("Total loss in 20 days: "+lossAmt);
-        break loop2;
+      if (i>20) {
+        System.out.println("\nDay "+i+"\nTotal Profit: $"+profitAmt+"\nTotal Loss: $"+lossAmt);
       }
       i++;
     }
@@ -32,10 +29,12 @@ public class GamblingSim {
 
 
   public static int singleDayGamble() {
+    int winningStake = (int) (stake + (.5*stake));
+    int losingStake = (int) (stake - (.5*stake));
     loop1: while (true) {
       gamble();
       dayBetCount++;
-      if (gamblingMoney == 50 || gamblingMoney == 150) {
+      if (gamblingMoney == losingStake || gamblingMoney == winningStake) {
         break loop1;
       }
     }
@@ -52,12 +51,12 @@ public class GamblingSim {
       // bet won
       profitAmt++;
       gamblingMoney += betAmt;
-      System.out.println("Won: " +" "+ gamblingMoney+" " + moneyAtStart);
+      //System.out.println("Won: " +" "+ gamblingMoney+" " + stake);
     } else if (betCall ==false) {
       //bet lost
       lossAmt++;
       gamblingMoney-=betAmt;
-      System.out.println("Lost: " +" "+ gamblingMoney+" " + moneyAtStart);
+      //System.out.println("Lost: " +" "+ gamblingMoney+" " + stake);
     }
   }
 }
