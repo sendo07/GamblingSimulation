@@ -31,7 +31,7 @@ public class GamblingSim {
   }
 
   public static void welcomeScreen() {
-    System.out.println("\nWelcome to Gambling Simulation!\n\nStarting Stats: \n1. Stake = $100\n2. Bet Amount = $1\n3. Stake Percent =  50%\n\n\nStarting bets...");
+    System.out.println("\nWelcome to Gambling Simulation!\n\nStarting Stats: \n1. Stake = $"+STAKE+"\n2. Bet Amount = $"+BET_AMT+"\n3. Stake Percent = "+STAKE_PERCENT+"\n\n\nStarting bets...");
   }
 
   public static void results() {
