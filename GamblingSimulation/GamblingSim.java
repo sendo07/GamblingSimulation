@@ -41,7 +41,7 @@ public class GamblingSim {
   }
 
   public static void progExecution() {
-    System.out.println("\nWelcome to Gambling Simulation!");
+    System.out.println("\nWelcome to Gambling Simulation!\n");
     
     Scanner scan = new Scanner(System.in);
 
