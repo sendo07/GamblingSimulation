@@ -17,6 +17,7 @@ public class GamblingSim {
   private static final int STAKE = 100;
   private static final int BET_AMT = 1;
   private static final double STAKE_PERCENT = 0.50;
+  private static final int NUM_OF_DAYS_IN_A_MONTH = 30;
 
   // Declaring Variables
   private static int gamblingMoney = STAKE;
@@ -87,7 +88,7 @@ public class GamblingSim {
     System.out.println("\n\nProfit & Loss Details (Day21 onwards)");
 
     int i=1;
-    while (i<=30) {
+    while (i<=NUM_OF_DAYS_IN_A_MONTH) {
       ArrayList<Integer> arrTemp = singleDayGamble();
 
       if (arrTemp.get(2) == 1) {
