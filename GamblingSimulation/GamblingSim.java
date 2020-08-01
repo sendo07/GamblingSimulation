@@ -5,10 +5,13 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Random;
 import java.awt.List;
+import java.lang.ProcessBuilder.Redirect;
 import java.security.KeyStore.Entry;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Scanner;
 
 
 public class GamblingSim {
@@ -28,18 +31,47 @@ public class GamblingSim {
   private static String flag1;
   private static String maxWinsDay;
   private static String maxLossDay;
+  private static String resDayComparison;
   private static LinkedHashMap<String, String> resultsMonth = new LinkedHashMap<>();
   private static LinkedHashMap<Integer, String> winDaysHashMap = new LinkedHashMap<>();
   private static LinkedHashMap<Integer, String> lossDaysHashMap = new LinkedHashMap<>();
   
   public static void main(String[] args) {
-    welcomeScreen();
-    monthGamble();
-    results();
+    progExecution();
   }
 
-  public static void welcomeScreen() {
-    System.out.println("\nWelcome to Gambling Simulation!\n\nStarting Stats: \n1. Stake = $"+STAKE+"\n2. Bet Amount = $"+BET_AMT+"\n3. Stake Percent = "+STAKE_PERCENT+"\n\n\nStarting bets...");
+  public static void progExecution() {
+    System.out.println("\nWelcome to Gambling Simulation!");
+    
+    Scanner scan = new Scanner(System.in);
+
+    
+    ProgramContinue: while (true) { 
+      startGamble();
+      monthGamble();
+      results();
+      System.out.println("\n\n"+comparisonByDays()+"\n");
+      System.out.println(resultsMonth);
+      System.out.println(winDaysHashMap);
+      System.out.println(lossDaysHashMap); 
+      System.out.println("\n\nWould like to continue Gambling? Y/N: ");
+      String usrIn = scan.nextLine().toUpperCase();
+      switch (usrIn) {
+        case "Y":
+          continue;
+        case "N":
+          System.out.println("\nThank for Playing!\nVisit again!");
+          break ProgramContinue;
+        default:
+          System.out.println("..............\n\nError: Invalid Option\nTry Again!");
+      }  
+    }
+    scan.close();
+  }
+
+  // Method for displaying the start of Gambling
+  public static void startGamble() {
+    System.out.println("\n\nStarting Stats: \n1. Stake = $"+STAKE+"\n2. Bet Amount = $"+BET_AMT+"\n3. Stake Percent = "+STAKE_PERCENT+"\n\n\nStarting bets...");
   }
 
   // Method to Display the results
@@ -54,9 +86,21 @@ public class GamblingSim {
     
     System.out.println("\n\n_______________________________________________________________________________________________________");
     System.out.println("\n\nLuckiest & Unluckiest Day: \n");
-    System.out.println("\nLuckiest Day: "+luckyDay());
-    System.out.println("\nUnluckiest Day: "+unluckyDay());
+    System.out.println("\nLuckiest Day: "+ luckyDay());
+    System.out.println("\nUnluckiest Day: "+ unluckyDay());
     System.out.println("\n\n_______________________________________________________________________________________________________");
+  }
+
+  // Method
+  public static String comparisonByDays() {
+    if (winDaysHashMap.size() > lossDaysHashMap.size()) {
+      //Number of days won is more
+      resDayComparison =  "You've won maximum number of days in this Month";
+    } else if (lossDaysHashMap.size() > winDaysHashMap.size()) {
+      // Number of days lost is more
+      resDayComparison =  "You've lost maximum number of days in this Month";
+    }
+    return resDayComparison;
   }
 
   // Method to find Luckiest Day
