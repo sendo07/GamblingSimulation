@@ -51,9 +51,6 @@ public class GamblingSim {
       monthGamble();
       results();
       System.out.println("\n\n"+comparisonByDays()+"\n");
-      System.out.println(resultsMonth);
-      System.out.println(winDaysHashMap);
-      System.out.println(lossDaysHashMap); 
       System.out.println("\n\nWould like to continue Gambling? Y/N: ");
       String usrIn = scan.nextLine().toUpperCase();
       switch (usrIn) {
