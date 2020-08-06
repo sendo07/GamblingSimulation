@@ -48,6 +48,8 @@ public class GamblingSim {
     
     ProgramContinue: while (true) { 
       startGamble();
+      winDaysHashMap.clear();
+      lossDaysHashMap.clear();
       monthGamble();
       results();
       System.out.println("\n\n"+comparisonByDays()+"\n");
